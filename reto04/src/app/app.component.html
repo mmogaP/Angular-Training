@@ -1,4 +1,17 @@
-<p> {{ title }} en mi casa con angular</p>
+<!-- <p> {{ title }} en mi casa con angular</p>
 <p> Total: suma de 5 +5: {{ 5 + 5 }} </p>
 
-<img src="{{url}}" alt="drawing"/>
+<img src="{{url}}" alt="drawing"/> -->
+
+<p *ngIf="name">El nombre es : {{name}}</p>
+<input type="text" [(ngModel)]="name" />
+
+
+<ul *ngFor="let city of cities">
+    <li (click)="onCityClicked(city)" [ngClass]="{'selected': city === selection}">{{city}}</li>
+</ul>
+
+<div *ngIf="selection">
+    <p >Your city is: {{selection}}</p>
+    <button (click)="onClear()">Clear</button>
+</div>
