@@ -3,8 +3,8 @@
 
 <img src="{{url}}" alt="drawing"/> -->
 
-<p *ngIf="name">El nombre es : {{name}}</p>
-<input type="text" [(ngModel)]="name" />
+<!--<p *ngIf="name">El nombre es : {{name}}</p>
+<input type="text" [(ngModel)]="name" />-->
 
 
 <ul *ngFor="let city of cities">
@@ -13,5 +13,8 @@
 
 <div *ngIf="selection">
     <p >Your city is: {{selection}}</p>
-    <button (click)="onClear()">Clear</button>
+    <!-- <button (click)="onClear()">Clear</button> -->
+    <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear'" [selection]="selection"></app-button>
+    <!-- <app-button (click)="onClear()" [color]="'green'" [label]="'ahre'"></app-button>
+    <app-button (click)="onClear()" [color]="'red'" [label]="'haram'"></app-button> -->
 </div>
