@@ -1,20 +1,21 @@
-<!-- <p> {{ title }} en mi casa con angular</p>
-<p> Total: suma de 5 +5: {{ 5 + 5 }} </p>
-
-<img src="{{url}}" alt="drawing"/> -->
-
-<!--<p *ngIf="name">El nombre es : {{name}}</p>
-<input type="text" [(ngModel)]="name" />-->
-
-
-<ul *ngFor="let city of cities">
-    <li (click)="onCityClicked(city)" [ngClass]="{'selected': city === selection}">{{city}}</li>
-</ul>
-
-<div *ngIf="selection">
-    <p >Your city is: {{selection}}</p>
-    <!-- <button (click)="onClear()">Clear</button> -->
-    <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear'" [selection]="selection"></app-button>
-    <!-- <app-button (click)="onClear()" [color]="'green'" [label]="'ahre'"></app-button>
-    <app-button (click)="onClear()" [color]="'red'" [label]="'haram'"></app-button> -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"></app-form-new-item>
+        </div>
+        <div class="col-md-8">
+            <ul *ngFor="let city of cities">
+                <li (click)="onCityClicked(city)" [ngClass]="{'alert alert-info': city === selection}">
+                    {{city}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <div *ngIf="selection">
+                <p >Your city is: {{selection}}</p>
+                <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear'">
+                </app-button>
+            </div>
+        </div>
+    </div>
 </div>

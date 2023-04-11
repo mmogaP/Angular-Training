@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@
 
 @Component({
   selector: 'app-button',
-  template: `<button [ngStyle]="{'background-color': color}">{{label}}</button>`,
+  template: `<button [ngStyle]="{'background-color': color ,'color': 'white'}">{{label}}</button>`,
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnChanges, OnInit, OnDestroy{
