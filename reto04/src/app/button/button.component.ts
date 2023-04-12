@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-button',
-  template: `<button [ngStyle]="{'background-color': color ,'color': 'white'}">{{label}}</button>`,
-  styleUrls: ['./button.component.scss']
+  template: `
+    <button [ngStyle]="{'background-color': color ,'color': 'white'}">{{label}}</button>`,
+  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnChanges, OnInit, OnDestroy{
   @Input() color!: string;
@@ -23,5 +25,4 @@ export class ButtonComponent implements OnChanges, OnInit, OnDestroy{
   ngOnInit(): void {
     console.log('OnInit')
   }
-
 }

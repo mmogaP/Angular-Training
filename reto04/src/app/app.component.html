@@ -4,10 +4,9 @@
             <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"></app-form-new-item>
         </div>
         <div class="col-md-8">
-            <ul *ngFor="let city of cities">
-                <li (click)="onCityClicked(city)" [ngClass]="{'alert alert-info': city === selection}">
-                    {{city}}
-                </li>
+            <ul>
+                <app-cities *ngFor="let city of cities" 
+                (cityClickedEvent)="onCityClicked($event)" [city]="city" [selection]="selection"></app-cities>
             </ul>
         </div>
         <div class="col-md-4">
