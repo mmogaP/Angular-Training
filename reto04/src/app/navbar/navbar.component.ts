@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+
+  constructor(private readonly router: Router) { }
+
+  goToReactive(): void {
+    this.router.navigate(['contact-reactive'], { queryParams: { name: 'John' } });
+  }
+
+  goToTemplate(): void {
+    this.router.navigate(['contact-template', '580']);
+  }
 
 }
