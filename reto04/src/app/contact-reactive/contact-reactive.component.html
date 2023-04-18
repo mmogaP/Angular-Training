@@ -32,7 +32,8 @@
     <div class="mb-4">
         <label for="comment" class="form-label">Comment</label>
         <textarea class="form-control" name="comment" id="comment" rows="4" placeholder="Leave a comment....."  required formControlName="comment"></textarea>
-        <div *ngIf="contactForm.get('comment')?.touched && contactForm.get('comment')?.errors?.['required']" 
+        <div *ngIf="contactForm.get('comment')?.touched && contactForm.get('comment
+        ')?.errors?.['required']" 
         class="alert alert-danger">This field is required.</div>
     </div>
     <div class="d-grid gap-2 col-4 float-end">
