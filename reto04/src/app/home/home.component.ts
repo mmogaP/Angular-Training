@@ -1,31 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { City, DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
-  cities = ['Barcelona', 'Madrid', 'Lima', 'Quito'];
-  name!: string;
-  selection!: string;
+  cities:City[] = [];
+  selection!: City;
   criteria = '';
 
-  title = 'Día 4 del reto';
-  url = 'https://lh3.googleusercontent.com/CN8n-PRqK3TiLPkzwh0FJ9Uv2j54gpdPuf7T6gTlL8B7BR7ZFGA14X0ZNGBB6ORU9HDTLwgd2atO3MPLNPAQ15rk=w640-h400-e365-rj-sc0x00ffffff'
+  constructor(private readonly dataSVc: DataService) { }
+
+  ngOnInit(): void {
+    this.dataSVc.getCities()
+    .subscribe( cities => {
+      //
+      this.cities = [...cities];
+    });
+  }
+
+  updateCity(city: City): void {
+    this.dataSVc.updateCity(city).subscribe(res => {
+      const tempArr = this.cities.filter(item => item._id !== city._id);
+      this.cities = [...tempArr, city];
+      this.onClear();
+    });
+  }
 
   addNewCity(city: string): void {
-    this.cities.push(city);
+   /*  this.cities.push(city); */
+    this.dataSVc.addNewCity(city).subscribe(res => {
+      this.cities.push(res);
+    });
   }
   
-  onCityClicked(city: string): void {
+  onCitySelected(city: City): void {
     console.log('City ->', city);
     this.selection = city;
   }
 
-  onClear(): void {
-    this.selection = '';
+  onCityDelete(id: string): void {
+    if (confirm('Are you sure?')){
+      this.dataSVc.deleteCity(id).subscribe(() => {
+        const tempArr = this.cities.filter(city => city._id !== id);
+        this.cities = [...tempArr];
+        this.onClear();
+      });
+    }
   }
+
+  onClear(): void {
+    this.selection = {
+      _id: '',
+      name: '',
+    };
+  }
+
+
 
 }
